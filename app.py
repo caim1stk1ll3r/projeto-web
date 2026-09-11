@@ -57,6 +57,55 @@ def calcular(nome, ano):
 
     return render_template('variaveis.html', nome_usuario = nome, ano_atual = ano_atual, nascimento = ano, idade = idade, status = status)
 
+@app.route('/dicio')
+def dicionario():
+    dados = {
+        'chave' : 'valor',
+        'curso' : 'GTI',
+        'local' : 'fatec jahu',
+        'semestre' : 4,    
+    }
+    return render_template('dicio.html', **dados)
+
+@app.route('/condicao/<int:valor>')
+def condicao(valor):
+    return render_template('condicao.html', valor = valor)
+
+@app.route('/perfil/<nome>')
+def perfil(nome):
+    #simulando um banco de dados com um dicionário de usuários
+    #na aula 05 isso virá do mysql de vdd
+    usuarios = {
+        'admin' : {
+            'nome' : 'Administrador',
+            'email' : 'admin@fatec.br',
+            'nivel' : 'administrador',
+            'ativo' : True,
+            'posts' : 47
+        },
+        'joao' : {
+                'nome' : 'João Silva',
+                'email' : 'joa@email.com',
+                'nivel' : 'usuario',
+                'ativo' : True,
+                'posts' : 12
+            },
+        'admin' : {
+                'nome' : 'Maria Souza',
+                'email' : 'maria@email.com',
+                'nivel' : 'moderador',
+                'ativo' : False,
+                'posts' : 31
+            },
+    }
+
+    #busca o usuario pelo nbome na url - .get() retorna None se nao existir
+    usuario = usuarios.get(nome)
+
+    #passa o usuario (ou None) para o tempalte
+    return render_template('perfil.html', usuario=usuario, nome_buscado=nome)
+    
+
 
 
 

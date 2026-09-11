@@ -23,7 +23,8 @@ python app.py
 
 127.0.0.1:5000
 
-**
+**salvando as coisas no git
 
 git add "requirements.txt"
 git commit -m "Aula 02: Flask instalado, requirements.txt gerado"
+git push
